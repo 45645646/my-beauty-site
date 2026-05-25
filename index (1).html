@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Марина Давиденко | Кератин, Ботокс та Брови Харків ХТЗ</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (Montserrat) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome для красивых иконок -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .blur-bg {
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-[#0b0b0d] text-gray-100 selection:bg-rose-500 selection:text-white">
+
+  <!-- НАВИГАЦИЯ -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#0b0b0d]/80 blur-bg border-b border-zinc-800">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold tracking-wider bg-gradient-to-r from-amber-200 via-rose-300 to-amber-200 bg-clip-text text-transparent">
+        M.DAVIDENKO
+      </a>
+      <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+        <a href="#services" class="hover:text-rose-300 transition">Послуги</a>
+        <a href="#works" class="hover:text-rose-300 transition">Роботи</a>
+        <a href="#calculator" class="hover:text-rose-300 transition">Калькулятор</a>
+        <a href="#about" class="hover:text-rose-300 transition">Про майстра</a>
+        <a href="#contacts" class="hover:text-rose-300 transition">Контакти</a>
+      </nav>
+      <a href="https://wa.me/380996205841" target="_blank" class="px-5 py-2 rounded-full border border-rose-400/30 text-xs font-semibold uppercase tracking-wider text-rose-300 hover:bg-rose-400/10 transition">
+        Записатись
+      </a>
+    </div>
+  </header>
+
+  <!-- ГЛАВНЫЙ ЭКРАН (HERO) -->
+  <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+    <!-- Фоновое свечение -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-rose-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-amber-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 w-full relative z-10">
+      <!-- Текст -->
+      <div class="max-w-2xl space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-amber-200/90 font-medium tracking-wider">
+          <i class="fa-solid fa-award text-amber-300"></i> 5 років професійного стажу
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+          Ідеальне волосся та <br>
+          <span class="bg-gradient-to-r from-amber-200 via-rose-300 to-amber-200 bg-clip-text text-transparent">
+            виразні брови
+          </span>
+        </h1>
+        <p class="text-zinc-400 text-base md:text-lg max-w-xl leading-relaxed">
+          Мене звати <span class="text-white font-semibold">Марина Давиденко</span>. Працюю з любов’ю до кожної деталі, підбираю процедури індивідуально під ваш тип волосся та риси обличчя ✨
+        </p>
+        
+        <!-- Локация и статус работы -->
+        <div class="flex flex-col sm:flex-row gap-3 max-w-xl">
+          <div class="flex-1 flex items-center gap-3 text-sm text-zinc-300 bg-zinc-900/50 p-3 rounded-xl border border-zinc-800/60">
+            <i class="fa-solid fa-location-dot text-rose-400 text-lg"></i>
+            <div>
+              <p class="font-semibold text-white text-xs">м. Харків, р-н ХТЗ</p>
+              <p class="text-[11px] text-zinc-500">Затишна атмосфера</p>
+            </div>
+          </div>
+          
+          <!-- Индикатор времени работы -->
+          <div class="flex-1 flex items-center gap-3 text-sm text-zinc-300 bg-zinc-900/50 p-3 rounded-xl border border-zinc-800/60">
+            <span class="relative flex h-3 w-3 ml-1">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" id="status-indicator-ping"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3" id="status-indicator-dot"></span>
+            </span>
+            <div>
+              <p class="font-semibold text-white text-xs" id="hero-status-title">Завантаження...</p>
+              <p class="text-[11px] text-zinc-500" id="hero-status-desc">перевірка часу</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <a href="#calculator" class="px-8 py-4 bg-gradient-to-r from-rose-400 to-amber-300 text-zinc-950 font-bold rounded-xl text-center shadow-lg shadow-rose-500/20 hover:scale-[1.02] transition duration-300">
+            <i class="fa-solid fa-calculator mr-2"></i> Розрахувати вартість
+          </a>
+          <a href="#services" class="px-8 py-4 bg-zinc-900 border border-zinc-800 text-zinc-200 font-semibold rounded-xl text-center hover:bg-zinc-800 hover:text-white transition duration-300">
+            Переглянути послуги
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ -->
+  <section id="services" class="py-24 bg-zinc-950/50 border-y border-zinc-900 relative">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">Що ви можете зробити у мене:</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-rose-400 to-amber-300 mx-auto rounded"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- БЛОК ВОЛОСЫ -->
+        <div class="bg-zinc-900/60 rounded-2xl p-8 border border-zinc-800/80 space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center text-rose-300 text-xl border border-rose-500/20">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">Догляд та вирівнювання волосся</h3>
+              <p class="text-xs text-zinc-500">Преміальні сертифіковані суміші</p>
+            </div>
+          </div>
+          
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Кератинове вирівнювання</strong>
+                <span class="text-sm text-zinc-400">Ідеально рівне, гладке та блискуче волосся без пухнастості.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Ботокс для волосся</strong>
+                <span class="text-sm text-zinc-400">Глибоке живлення та відновлення структури, шовковистість та блиск.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Біксіпластія</strong>
+                <span class="text-sm text-zinc-400">Потужне вирівнювання з максимальним зволоженням та живленням.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Реконструкція волосся</strong>
+                <span class="text-sm text-zinc-400">Інтенсивна терапія для пошкодженого та ламкого волосся.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Холодне відновлення</strong>
+                <span class="text-sm text-zinc-400">Делікатна процедура без термічної обробки для відновлення сили волосся.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- БЛОК БРОВИ И РЕСНИЦЫ -->
+        <div class="bg-zinc-900/60 rounded-2xl p-8 border border-zinc-800/80 space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-300 text-xl border border-amber-500/20">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">Оформлення брів та вій</h3>
+              <p class="text-xs text-zinc-500">Підкреслення природної краси</p>
+            </div>
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Оформлення брів</strong>
+                <span class="text-sm text-zinc-400">Створення ідеальної форми, що гармонійно підходить под ваш тип обличчя.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Фарбування брів</strong>
+                <span class="text-sm text-zinc-400">Стійке та природне фарбування професійною хною або преміум-фарбою.</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-200 mt-1"><i class="fa-solid fa-sparkles text-xs"></i></span>
+              <div>
+                <strong class="text-zinc-100 block">Ламінування брів та вій</strong>
+                <span class="text-sm text-zinc-400">Довготривала укладка брів та витончений вигин для вій з ефектом об'єму.</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="bg-gradient-to-br from-rose-950/20 to-amber-950/20 rounded-xl p-4 border border-rose-500/10 mt-6">
+            <p class="text-xs text-rose-300 italic text-center">
+              "Буду рада зробити вас ще красивішими ✨"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОРТФОЛІО РОБІТ -->
+  <section id="works" class="py-24 relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold text-amber-300 uppercase tracking-widest">Галерея</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-2 mb-4">Мої роботи</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-rose-400 to-amber-300 mx-auto rounded"></div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-1.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-2.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-3.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-4.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-5.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-6.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-7.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+        <div class="group relative w-[calc(50%-8px)] md:w-[calc(25%-12px)] aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-800 hover:border-rose-400/40 transition duration-300 shadow-lg">
+          <img src="assets/work-8.png" alt="Робота Марини Давиденко" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="https://instagram.com/Marina_hair_browmaster_" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-pink-500/30 text-pink-300 text-sm font-semibold hover:bg-pink-500/10 transition">
+          <i class="fa-brands fa-instagram"></i> Більше робіт в Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАЛЬКУЛЯТОР СТОИМОСТИ -->
+  <section id="calculator" class="py-24 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <div class="bg-zinc-900/80 rounded-3xl p-6 md:p-10 border border-zinc-800 shadow-2xl">
+        <div class="text-center mb-10">
+          <span class="text-xs font-bold text-rose-400 uppercase tracking-widest">Online-розрахунок</span>
+          <h2 class="text-2xl md:text-3xl font-bold mt-1">Орієнтовний калькулятор цін</h2>
+          <p class="text-xs text-zinc-500 mt-1">Остаточна ціна залежить від густоти волосся</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Настройки -->
+          <div class="space-y-6">
+            <!-- Крок 1 -->
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2 font-semibold">1. Оберіть категорію</label>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="setCategory('hair')" id="btn-cat-hair" class="py-3 px-4 rounded-xl border text-sm font-semibold transition bg-rose-500 border-rose-400 text-white">
+                  💆‍♀️ Волосся
+                </button>
+                <button onclick="setCategory('brows')" id="btn-cat-brows" class="py-3 px-4 rounded-xl border text-sm font-semibold transition border-zinc-800 hover:border-zinc-750 text-zinc-400 hover:text-white">
+                  🤨 Брови / Вії
+                </button>
+              </div>
+            </div>
+
+            <!-- Крок 2 -->
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2 font-semibold">2. Оберіть процедуру</label>
+              <select id="procedure-select" onchange="calculatePrice()" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-zinc-300 text-sm focus:outline-none focus:border-rose-400">
+                <!-- Заполняется динамически -->
+              </select>
+            </div>
+
+            <!-- Крок 3 -->
+            <div id="length-container">
+              <label class="block text-xs uppercase tracking-wider text-zinc-400 mb-2 font-semibold">3. Довжина волосся</label>
+              <div class="grid grid-cols-3 gap-2">
+                <button onclick="setLength('short')" id="btn-len-short" class="py-2 px-3 rounded-lg border text-xs font-medium transition bg-zinc-800 border-zinc-700 text-white">Коротке<br><span class="text-[10px] text-zinc-500">до плечей</span></button>
+                <button onclick="setLength('medium')" id="btn-len-medium" class="py-2 px-3 rounded-lg border text-xs font-medium transition border-zinc-800 text-zinc-400">Середнє<br><span class="text-[10px] text-zinc-500">до лопаток</span></button>
+                <button onclick="setLength('long')" id="btn-len-long" class="py-2 px-3 rounded-lg border text-xs font-medium transition border-zinc-800 text-zinc-400">Довге<br><span class="text-[10px] text-zinc-500">нижче лопаток</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Результат -->
+          <div class="bg-zinc-950/80 rounded-2xl p-6 border border-zinc-800 flex flex-col justify-between">
+            <div class="space-y-4">
+              <h3 class="text-sm font-semibold text-zinc-400 uppercase tracking-wider">Обрана послуга:</h3>
+              <div>
+                <p id="summary-name" class="text-xl font-bold text-white">Кератинове вирівнювання</p>
+                <p id="summary-desc" class="text-xs text-zinc-500 mt-1">Довжина: Коротке (до плечей)</p>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-zinc-900 mt-6">
+              <div class="flex justify-between items-baseline">
+                <span class="text-sm text-zinc-400">Орієнтовно:</span>
+                <span class="text-3xl font-extrabold text-amber-200" id="total-price">1200 грн</span>
+              </div>
+              <p class="text-[10px] text-zinc-500 mt-2">*Ціна розраховується приблизно та коригується майстром перед початком процедури.</p>
+            </div>
+
+            <button onclick="bookSelectedService()" class="w-full mt-6 py-3 bg-gradient-to-r from-rose-400 to-amber-300 text-zinc-950 font-bold rounded-xl text-center text-sm shadow hover:opacity-90 transition">
+              <i class="fa-brands fa-telegram mr-1"></i> Записатись з цим розрахунком
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- О МАСТЕРЕ -->
+  <section id="about" class="py-24 bg-zinc-950/50 border-t border-zinc-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <!-- Визуальный блок -->
+        <div class="relative max-w-md mx-auto w-full aspect-[4/5] rounded-3xl bg-zinc-900 border border-zinc-800 flex items-center justify-center p-6 text-center">
+          <div class="space-y-4">
+            <div class="w-16 h-16 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-300 text-2xl mx-auto">
+              <i class="fa-solid fa-gem"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Чому обирають Марину?</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed max-w-xs">
+              Тут ви можете згодом розмістити фотографії сертифікатів мами або затишне фото робочого кабінету, щоб викликати довіру у нових клієнтів.
+            </p>
+          </div>
+        </div>
+
+        <!-- Текст преимуществ -->
+        <div class="space-y-8">
+          <div>
+            <span class="text-xs font-bold text-amber-300 uppercase tracking-widest">Про майстра</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-2">Марина Давиденко</h2>
+            <p class="text-zinc-400 text-sm mt-4">Більше ніж 5 років я дарую дівчатам впевненість у власній красі. Моя головна місія — здорове, слухняне волосся та бездоганний погляд.</p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex gap-4">
+              <div class="text-rose-400 text-xl"><i class="fa-regular fa-circle-check"></i></div>
+              <div>
+                <h4 class="font-bold text-white text-sm">Професійна косметика</h4>
+                <p class="text-xs text-zinc-500 mt-1">Використовую тільки сертифіковані склади преміум-класу (Італія, Бразилія), безпечні для волосся.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="text-rose-400 text-xl"><i class="fa-regular fa-circle-check"></i></div>
+              <div>
+                <h4 class="font-bold text-white text-sm">Індивідуальна діагностика</h4>
+                <p class="text-xs text-zinc-500 mt-1">Обов'язково тестую волосся на ступінь пошкодження, щоб правильно підібрати склад та температуру.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="text-rose-400 text-xl"><i class="fa-regular fa-circle-check"></i></div>
+              <div>
+                <h4 class="font-bold text-white text-sm">Сервіс та турбота</h4>
+                <p class="text-xs text-zinc-500 mt-1">Зручне крісло, смачна кава або чай, приємна розмова або тиша за вашим бажанням.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ И ГРАФИК РАБОТЫ -->
+  <section id="contacts" class="py-24 border-t border-zinc-900 relative">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Контакты и график -->
+        <div class="space-y-8">
+          <div>
+            <span class="text-xs font-bold text-rose-400 uppercase tracking-widest">Буду рада бачити вас</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-2">Контакти та Запис</h2>
+            <p class="text-zinc-400 text-sm mt-4">Ви можете написати мені у будь-який зручний месенджер або зателефонувати. Приймаю за попереднім записом.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-4">
+              <!-- Телефон -->
+              <a href="tel:+380996205841" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-750 transition">
+                <div class="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-300">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] text-zinc-500 uppercase font-bold">Дзвінки та SMS</p>
+                  <p class="text-xs font-semibold text-white">+38 (099) 620-58-41</p>
+                </div>
+              </a>
+
+              <!-- Местоположение -->
+              <div class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
+                <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-300">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] text-zinc-500 uppercase font-bold">Місцезнаходження</p>
+                  <p class="text-xs font-semibold text-white">м. Харків, р-н ХТЗ</p>
+                </div>
+              </div>
+
+              <!-- Instagram: Marina_hair_browmaster_ -->
+              <a href="https://instagram.com/Marina_hair_browmaster_" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-750 transition">
+                <div class="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-300">
+                  <i class="fa-brands fa-instagram text-base"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] text-zinc-500 uppercase font-bold">Instagram</p>
+                  <p class="text-xs font-semibold text-white">@Marina_hair_browmaster_</p>
+                </div>
+              </a>
+
+              <!-- Facebook: marina_hair_90 -->
+              <a href="https://facebook.com/marina_hair_90" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-750 transition">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-300">
+                  <i class="fa-brands fa-facebook-f text-base"></i>
+                </div>
+                <div>
+                  <p class="text-[10px] text-zinc-500 uppercase font-bold">Facebook</p>
+                  <p class="text-xs font-semibold text-white">marina_hair_90</p>
+                </div>
+              </a>
+            </div>
+
+            <!-- БЛОК ГРАФИКА РАБОТЫ -->
+            <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-5 space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-zinc-300 uppercase tracking-wider">Робочі години</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold" id="status-badge">
+                  <span class="h-1.5 w-1.5 rounded-full" id="status-badge-dot"></span>
+                  <span id="status-badge-text">...</span>
+                </span>
+              </div>
+              
+              <div class="space-y-2.5 text-xs">
+                <!-- Пн - Пт -->
+                <div class="flex justify-between items-center py-1.5 border-b border-zinc-800/50" id="weekday-row-1-5">
+                  <span class="text-zinc-400 font-medium">Пн – Пт</span>
+                  <span class="text-white font-bold">9:00 – 19:00</span>
+                </div>
+                <!-- Сб -->
+                <div class="flex justify-between items-center py-1.5 border-b border-zinc-800/50" id="weekday-row-6">
+                  <span class="text-zinc-400 font-medium">Субота</span>
+                  <span class="text-white font-bold">11:00 – 17:00</span>
+                </div>
+                <!-- Вс -->
+                <div class="flex justify-between items-center py-1.5" id="weekday-row-0">
+                  <span class="text-zinc-400 font-medium">Неділя</span>
+                  <span class="text-white font-bold">11:00 – 17:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Мессенджеры (Телеграм без подчёркивания) -->
+          <div class="pt-2">
+            <p class="text-xs text-zinc-500 mb-3 uppercase tracking-wider font-semibold">Написати у чат:</p>
+            <div class="flex gap-4">
+              <a href="https://t.me/marina_hair_browmaster" target="_blank" class="flex-1 py-3 bg-[#229ED9]/10 border border-[#229ED9]/30 text-[#229ED9] hover:bg-[#229ED9]/20 transition rounded-xl font-bold text-center text-xs flex items-center justify-center gap-2">
+                <i class="fa-brands fa-telegram text-base"></i> Telegram
+              </a>
+              <a href="viber://chat?number=%2B380996205841" target="_blank" class="flex-1 py-3 bg-[#7360F2]/10 border border-[#7360F2]/30 text-[#7360F2] hover:bg-[#7360F2]/20 transition rounded-xl font-bold text-center text-xs flex items-center justify-center gap-2">
+                <i class="fa-brands fa-viber text-base"></i> Viber
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Форма -->
+        <div class="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-white mb-2">Надіслати запит</h3>
+            <p class="text-xs text-zinc-400 mb-6">Залиште ваші дані, і я зв'яжуся з вами у Telegram чи Viber</p>
+
+            <form id="contact-form" class="space-y-4" onsubmit="handleFormSubmit(event)">
+              <div>
+                <label class="block text-[10px] text-zinc-500 uppercase tracking-wider font-semibold mb-1">Як до вас звертатися?</label>
+                <input type="text" id="form-name" required placeholder="Ваше ім'я" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm focus:outline-none focus:border-rose-400 text-white">
+              </div>
+              <div>
+                <label class="block text-[10px] text-zinc-500 uppercase tracking-wider font-semibold mb-1">Номер телефону або @username Telegram</label>
+                <input type="text" id="form-contact" required placeholder="+380... або @username" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm focus:outline-none focus:border-rose-400 text-white">
+              </div>
+              <div>
+                <label class="block text-[10px] text-zinc-500 uppercase tracking-wider font-semibold mb-1">Яка послуга цікавить?</label>
+                <select id="form-service" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm focus:outline-none focus:border-rose-400 text-zinc-300">
+                  <option>Кератинове вирівнювання волосся</option>
+                  <option>Ботокс для волосся</option>
+                  <option>Біксіпластія</option>
+                  <option>Реконструкція волосся</option>
+                  <option>Холодне відновлення волосся</option>
+                  <option>Оформлення брів</option>
+                  <option>Фарбування брів</option>
+                  <option>Ламінування брів та вій</option>
+                </select>
+              </div>
+              <button type="submit" class="w-full py-4 bg-gradient-to-r from-rose-400 to-amber-300 text-zinc-950 font-extrabold rounded-xl hover:opacity-90 transition text-sm">
+                Надіслати запит
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer class="bg-zinc-950 py-12 border-t border-zinc-900 text-center text-zinc-600 text-xs">
+    <div class="max-w-6xl mx-auto px-4 space-y-4">
+      <p class="font-bold tracking-widest text-zinc-400">M.DAVIDENKO</p>
+      <p>&copy; 2026 Студія Марини Давиденко. Всі права захищені.</p>
+    </div>
+  </footer>
+
+  <!-- СКРИПТЫ -->
+  <script>
+    // Данные калькулятора
+    const servicesData = {
+      hair: [
+        { id: 'keratin', name: 'Кератинове вирівнювання', prices: { short: 1200, medium: 1800, long: 2500 } },
+        { id: 'botox', name: 'Ботокс для волосся', prices: { short: 1000, medium: 1500, long: 2000 } },
+        { id: 'bixiplastia', name: 'Біксіпластія', prices: { short: 1300, medium: 1900, long: 2600 } },
+        { id: 'reconstruction', name: 'Реконструкція волосся', prices: { short: 1100, medium: 1600, long: 2200 } },
+        { id: 'cold_recovery', name: 'Холодне відновлення', prices: { short: 800, medium: 1200, long: 1600 } }
+      ],
+      brows: [
+        { id: 'brows_shape', name: 'Оформлення брів', price: 350 },
+        { id: 'brows_color', name: 'Фарбування брів', price: 400 },
+        { id: 'lamination', name: 'Ламінування брів та вій', price: 650 }
+      ]
+    };
+
+    let activeCategory = 'hair';
+    let selectedLength = 'short';
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      
+      const btnHair = document.getElementById('btn-cat-hair');
+      const btnBrows = document.getElementById('btn-cat-brows');
+      const lenContainer = document.getElementById('length-container');
+
+      if (cat === 'hair') {
+        btnHair.className = "py-3 px-4 rounded-xl border text-sm font-semibold transition bg-rose-500 border-rose-400 text-white";
+        btnBrows.className = "py-3 px-4 rounded-xl border text-sm font-semibold transition border-zinc-800 hover:border-zinc-750 text-zinc-400 hover:text-white";
+        lenContainer.classList.remove('hidden');
+      } else {
+        btnBrows.className = "py-3 px-4 rounded-xl border text-sm font-semibold transition bg-rose-500 border-rose-400 text-white";
+        btnHair.className = "py-3 px-4 rounded-xl border text-sm font-semibold transition border-zinc-800 hover:border-zinc-750 text-zinc-400 hover:text-white";
+        lenContainer.classList.add('hidden');
+      }
+
+      buildDropdown();
+      calculatePrice();
+    }
+
+    function buildDropdown() {
+      const select = document.getElementById('procedure-select');
+      select.innerHTML = '';
+      
+      const list = servicesData[activeCategory];
+      list.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.id;
+        option.textContent = item.name;
+        select.appendChild(option);
+      });
+    }
+
+    function setLength(length) {
+      selectedLength = length;
+      
+      const lengths = ['short', 'medium', 'long'];
+      lengths.forEach(l => {
+        const btn = document.getElementById(`btn-len-${l}`);
+        if (l === length) {
+          btn.className = "py-2 px-3 rounded-lg border text-xs font-medium transition bg-zinc-800 border-zinc-700 text-white";
+        } else {
+          btn.className = "py-2 px-3 rounded-lg border text-xs font-medium transition border-zinc-800 text-zinc-400";
+        }
+      });
+
+      calculatePrice();
+    }
+
+    function calculatePrice() {
+      const select = document.getElementById('procedure-select');
+      const selectedId = select.value;
+      if (!selectedId) return;
+      const list = servicesData[activeCategory];
+      const item = list.find(x => x.id === selectedId);
+
+      const summaryName = document.getElementById('summary-name');
+      const summaryDesc = document.getElementById('summary-desc');
+      const totalPrice = document.getElementById('total-price');
+
+      summaryName.textContent = item.name;
+
+      if (activeCategory === 'hair') {
+        const p = item.prices[selectedLength];
+        totalPrice.textContent = `${p} грн`;
+        
+        let lengthText = "Коротке (до плечей)";
+        if (selectedLength === 'medium') lengthText = "Середнє (до лопаток)";
+        if (selectedLength === 'long') lengthText = "Довге (нижче лопаток)";
+        
+        summaryDesc.textContent = `Довжина: ${lengthText}`;
+      } else {
+        totalPrice.textContent = `${item.price} грн`;
+        summaryDesc.textContent = `Фіксована ціна за послугу`;
+      }
+    }
+
+    // Запись в Телеграм (БЕЗ нижнего подчеркивания в нике!)
+    function bookSelectedService() {
+      const serviceName = document.getElementById('summary-name').textContent;
+      const desc = document.getElementById('summary-desc').textContent;
+      const price = document.getElementById('total-price').textContent;
+
+      const text = `Вітаю! Хочу записатись до вас на процедуру: "${serviceName}" (${desc}). Орієнтовна вартість: ${price}`;
+      const urlText = encodeURIComponent(text);
+
+      window.open(`https://t.me/marina_hair_browmaster?text=${urlText}`, '_blank');
+    }
+
+    // Форма связи (БЕЗ нижнего подчеркивания в нике!)
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('form-name').value;
+      const contact = document.getElementById('form-contact').value;
+      const service = document.getElementById('form-service').value;
+
+      const text = `Вітаю, Марино! Мене звати ${name}. Мій контакт: ${contact}. Хочу записатися на послугу: ${service}. Коли у вас є вільні віконечка?`;
+      const urlText = encodeURIComponent(text);
+
+      window.open(`https://t.me/marina_hair_browmaster?text=${urlText}`, '_blank');
+    }
+
+    // Интерактивный статус времени работы
+    function updateWorkingStatus() {
+      const now = new Date();
+      const day = now.getDay(); 
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const currentTimeDecimal = hours + minutes / 60;
+
+      let isOpen = false;
+      let openTimeStr = "";
+      let closeTimeStr = "";
+
+      if (day >= 1 && day <= 5) {
+        openTimeStr = "9:00";
+        closeTimeStr = "19:00";
+        if (currentTimeDecimal >= 9 && currentTimeDecimal < 19) {
+          isOpen = true;
+        }
+      } else {
+        openTimeStr = "11:00";
+        closeTimeStr = "17:00";
+        if (currentTimeDecimal >= 11 && currentTimeDecimal < 17) {
+          isOpen = true;
+        }
+      }
+
+      const heroStatusTitle = document.getElementById('hero-status-title');
+      const heroStatusDesc = document.getElementById('hero-status-desc');
+      const statusPing = document.getElementById('status-indicator-ping');
+      const statusDot = document.getElementById('status-indicator-dot');
+
+      const statusBadge = document.getElementById('status-badge');
+      const statusBadgeDot = document.getElementById('status-badge-dot');
+      const statusBadgeText = document.getElementById('status-badge-text');
+
+      if (isOpen) {
+        const greenClasses = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+        
+        statusPing.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75";
+        statusDot.className = "relative inline-flex rounded-full h-3 w-3 bg-emerald-500";
+        heroStatusTitle.textContent = "Зараз відчинено";
+        heroStatusTitle.className = "font-bold text-emerald-400 text-xs";
+        heroStatusDesc.textContent = `до ${closeTimeStr}`;
+
+        statusBadge.className = `inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${greenClasses}`;
+        statusBadgeDot.className = "h-1.5 w-1.5 rounded-full bg-emerald-400";
+        statusBadgeText.textContent = "Відчинено";
+      } else {
+        const redClasses = "bg-rose-500/10 text-rose-400 border border-rose-500/20";
+
+        statusPing.className = "absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-0";
+        statusDot.className = "relative inline-flex rounded-full h-3 w-3 bg-rose-500";
+        heroStatusTitle.textContent = "Зараз зачинено";
+        heroStatusTitle.className = "font-bold text-rose-400 text-xs";
+        
+        let nextOpenStr = (day >= 0 && day <= 4) ? "о 9:00" : "о 11:00";
+        if (day === 5) nextOpenStr = "о 11:00";
+        heroStatusDesc.textContent = `відчиняється ${nextOpenStr}`;
+
+        statusBadge.className = `inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${redClasses}`;
+        statusBadgeDot.className = "h-1.5 w-1.5 rounded-full bg-rose-400";
+        statusBadgeText.textContent = "Зачинено";
+      }
+
+      const rowWeekdays = document.getElementById('weekday-row-1-5');
+      const rowSaturday = document.getElementById('weekday-row-6');
+      const rowSunday = document.getElementById('weekday-row-0');
+
+      rowWeekdays.className = "flex justify-between items-center py-1.5 border-b border-zinc-800/50";
+      rowSaturday.className = "flex justify-between items-center py-1.5 border-b border-zinc-800/50";
+      rowSunday.className = "flex justify-between items-center py-1.5";
+
+      if (day >= 1 && day <= 5) {
+        rowWeekdays.className = "flex justify-between items-center py-2 px-2.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-200";
+      } else if (day === 6) {
+        rowSaturday.className = "flex justify-between items-center py-2 px-2.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-200";
+      } else if (day === 0) {
+        rowSunday.className = "flex justify-between items-center py-2 px-2.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-200";
+      }
+    }
+
+    buildDropdown();
+    calculatePrice();
+    updateWorkingStatus();
+    setInterval(updateWorkingStatus, 60000);
+  </script>
+</body>
+</html>
